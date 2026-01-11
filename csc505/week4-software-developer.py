@@ -30,9 +30,7 @@ class DeveloperProfile:
             for trait in DEVELOPER_TRAITS
             if getattr(self, trait)
         ]
-
         developer_traits= "".join([f"\n - {trait}" for trait in traits])
-
         return f"Developer Profile: {developer_traits}"
 
 class ProfileBuilder:
@@ -62,6 +60,7 @@ class ProfileBuilder:
     def set_cross_functional_collaboration(self):
         self.profile.cross_functional_collaboration = True
         return self
+
     def set_effective_communication(self):
         self.profile.effective_communication = True
         return self
@@ -81,25 +80,34 @@ class ProfileBuilder:
     def build(self):
         return self.profile
 
-if __name__ == "__main__":
+class ProfileDirector:
+    def __init__(self):
+        self.director = ProfileBuilder()
 
-    builder = ProfileBuilder()
-
-    print (f"\nJr {builder
+    def build_junior_dev_profile(self):
+        return (f"\nJunior {self.director
                 .set_curiosity()
                 .set_problem_solving()
                 .set_technical_proficiency()
                 .set_attention_to_quality()
                 .build()}")
 
-    print (f"\nSr {builder
+    def build_senior_dev_profile(self):
+        return (f"\nSenior {self.director
                 .set_independent_delivery()
                 .set_effective_communication()
                 .set_cross_functional_collaboration()
                 .build()}")
 
-    print (f"\nLead {builder
+    def build_lead_dev_profile(self):
+        return (f"\nLead {self.director
                .set_ownership_and_accountability()
                .set_strategic_alignment()
                .set_system_thinking()
-               .build()}")
+                .build()}")
+
+if __name__ == "__main__":
+    director = ProfileDirector()
+    print(director.build_junior_dev_profile())
+    print(director.build_senior_dev_profile())
+    print(director.build_lead_dev_profile())
