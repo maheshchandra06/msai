@@ -108,6 +108,9 @@ class ProfileDirector:
 
 if __name__ == "__main__":
     director = ProfileDirector()
-    print(director.build_junior_dev_profile())
-    print(director.build_senior_dev_profile())
-    print(director.build_lead_dev_profile())
+    jr_dev_profile = director.build_junior_dev_profile()
+    senior_dev_profile = director.build_senior_dev_profile()
+    lead_dev_profile = director.build_lead_dev_profile()
+    print(jr_dev_profile)
+    print(senior_dev_profile)
+    print(lead_dev_profile)
