@@ -82,27 +82,24 @@ class ProfileBuilder:
         return self.profile
 
 if __name__ == "__main__":
-    # 1. Initialize the builder
+
     builder = ProfileBuilder()
 
-    print("\nJr",end=" ")
-    print (builder
+    print (f"\nJr {builder
                 .set_curiosity()
                 .set_problem_solving()
                 .set_technical_proficiency()
                 .set_attention_to_quality()
-                .build())
+                .build()}")
 
-    print("\nSr", end=" ")
-    print (builder
+    print (f"\nSr {builder
                 .set_independent_delivery()
                 .set_effective_communication()
                 .set_cross_functional_collaboration()
-                .build())
+                .build()}")
 
-    print("\nLead", end=" ")
-    print (builder
+    print (f"\nLead {builder
                .set_ownership_and_accountability()
                .set_strategic_alignment()
                .set_system_thinking()
-               .build())
+               .build()}")
