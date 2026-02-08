@@ -28,6 +28,15 @@ class DeveloperProfile:
         developer_traits= "".join([f"\n - {trait.title().replace('_'," ")} : {TRAIT_DESCRIPTIONS[trait].casefold().capitalize()}" for trait in active_traits])
         return f"Developer Profile: {developer_traits}"
 
+    def active_traits(self):
+        active_traits = [
+            trait
+            for trait in DEVELOPER_TRAITS
+            if self.traits[trait]
+        ]
+        return len(active_traits)
+
+
 class ProfileBuilder:
     def __init__(self):
         self.profile = DeveloperProfile()
@@ -45,32 +54,43 @@ class ProfileDirector:
         self.director = ProfileBuilder()
 
     def build_junior_dev_profile(self):
-        return (f"\nJunior {self.director
-                .set_trait("curiosity")
-                .set_trait("problem_solving")
-                .set_trait("technical_proficiency")
-                .set_trait("attention_to_quality")
-                .build()}")
+        return (self.director
+                   .set_trait("curiosity")
+                   .set_trait("problem_solving")
+                   .set_trait("technical_proficiency")
+                   .set_trait("attention_to_quality")
+                   .build())
 
     def build_senior_dev_profile(self):
-        return (f"\nSenior {self.director
-                .set_trait("independent_delivery")
-                .set_trait("effective_communication")
-                .set_trait("cross_functional_collaboration")
-                .build()}")
+        self.director.__init__()
+        self.build_junior_dev_profile()
+        return (self.director
+                    .set_trait("independent_delivery")
+                    .set_trait("effective_communication")
+                    .set_trait("cross_functional_collaboration")
+                    .build())
 
     def build_lead_dev_profile(self):
-        return (f"\nLead {self.director
-               .set_trait("ownership_and_accountability")
-               .set_trait("strategic_alignment")
-               .set_trait("system_thinking")
-                .build()}")
+        self.director.__init__()
+        self.build_senior_dev_profile()
+        return (self.director
+                   .set_trait("ownership_and_accountability")
+                   .set_trait("strategic_alignment")
+                   .set_trait("system_thinking")
+                    .build())
+
 
 if __name__ == "__main__":
     director = ProfileDirector()
+    print("\nBuilding Developer Profiles....")
     jr_dev_profile = director.build_junior_dev_profile()
+    print(f"\nJunior {jr_dev_profile}")
+    print("Total traits: ", jr_dev_profile.active_traits())
+
     senior_dev_profile = director.build_senior_dev_profile()
+    print(f"\nSenior {senior_dev_profile}")
+    print("Total traits: ", senior_dev_profile.active_traits())
+
     lead_dev_profile = director.build_lead_dev_profile()
-    print(jr_dev_profile)
-    print(senior_dev_profile)
-    print(lead_dev_profile)
+    print(f"\nLead {lead_dev_profile}")
+    print("Total traits: ", lead_dev_profile.active_traits())
